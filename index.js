@@ -421,7 +421,7 @@ app.get('/', async (req, res) => {
                 size: (
                     v.S7 / 1024 / 1024
                 ).toFixed(2) + ' MB',
-                url: `https://file.sabir7718.com/f/${v.S7HaTe}`,
+                url: `https://file.nebuvault.sabir7718.com/f/${v.S7HaTe}`,
                 expires: v.expiresAt,
                 server: Number(
                     v.S7Server || 1
@@ -468,7 +468,7 @@ app.get('/', async (req, res) => {
                 links: S7ServerFiles.map(
                     v => ({
                         name: v.SYHaTe,
-                        url: `https://file.sabir7718.com/f/${v.S7HaTe}`
+                        url: `https://file.nebuvault.sabir7718.com/f/${v.S7HaTe}`
                     })
                 )
 
@@ -678,7 +678,7 @@ app.post('/upload', S7Upload.single('file'), async (req, res) => {
         res.json({
             developer: 'SABIR7718',
             success: true,
-            url: `https://file.sabir7718.com/f/${S7ID}`,
+            url: `https://file.nebuvault.sabir7718.com/f/${S7ID}`,
             expires: `${S7HaTeSYExpire} day(s)`
         })
     } catch (e) {
