@@ -86,7 +86,10 @@ function S7HaTeAPI(req, res, next) {
 
     const S7Allow = [
 
-        'api.nebuvault.sabir7718.com'
+        'api.nebuvault.sabir7718.com',
+        
+        'file.nebuvault.sabir7718.com'
+        
 
     ]
 
