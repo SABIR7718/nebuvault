@@ -812,6 +812,15 @@ app.get('/f/:id', async (req, res) => {
         'file.nebuvault.sabir7718.com'
     ) {
 
+        log(
+            'info',
+            'HOST',
+            JSON.stringify({
+                xf: req.headers['x-forwarded-host'],
+                host: req.get('host')
+            })
+        )
+
         return res.status(403).json({
 
             developer: 'SABIR7718',
