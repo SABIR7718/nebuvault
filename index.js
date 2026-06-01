@@ -87,9 +87,9 @@ function S7HaTeAPI(req, res, next) {
     const S7Allow = [
 
         'api.nebuvault.sabir7718.com',
-        
+
         'file.nebuvault.sabir7718.com'
-        
+
 
     ]
 
@@ -644,17 +644,17 @@ app.post('/upload', S7Upload.single('file'), async (req, res) => {
         let S7HaTeSYExpire
 
         if (S7SizeMB <= 1) {
-            S7HaTeSYExpire = 30
+            S7HaTeSYExpire = 365
         } else if (S7SizeMB <= 5) {
-            S7HaTeSYExpire = 15
+            S7HaTeSYExpire = 240
         } else if (S7SizeMB <= 20) {
-            S7HaTeSYExpire = 7
+            S7HaTeSYExpire = 180
         } else if (S7SizeMB <= 50) {
-            S7HaTeSYExpire = 3
+            S7HaTeSYExpire = 120
         } else if (S7SizeMB <= 100) {
-            S7HaTeSYExpire = 2
+            S7HaTeSYExpire = 90
         } else {
-            S7HaTeSYExpire = 1
+            S7HaTeSYExpire = 60
         }
 
         await S7Model.create({
@@ -857,22 +857,23 @@ app.get('/f/:id', async (req, res) => {
                 fileData.expiresAt - S7Now
             ) / (1000 * 60 * 60)
 
-        if (
-            S7RemainingHours <= 24 &&
-            S7RemainingHours > 0
-        ) {
+        if (S7RemainingHours <= 24) {
+
+            const S7NewExpire =
+                new Date(
+                    fileData.expiresAt.getTime() +
+                    (50 * 86400000)
+                )
 
             fileData.expiresAt =
-                new Date(
-                    Date.now() + 86400000
-                )
+                S7NewExpire
 
             await fileData.save()
 
             log(
                 'info',
                 'EXPIRE',
-                `${fileData.S7HaTe} +1 day refresh`
+                `${fileData.S7HaTe} +50 days extended`
             )
 
         }
